@@ -1,0 +1,180 @@
+/* src/assets/main.css */
+
+/* 全局样式 */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+}
+
+/* 页面容器 */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* 头部样式 */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #333;
+  color: white;
+  padding: 10px 20px;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+/* 导航菜单 */
+.nav-menu {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.nav-menu li a {
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.nav-menu li a:hover {
+  color: #ddd;
+}
+
+/* 主要内容区域 */
+.main-content {
+  padding: 20px 0;
+}
+
+/* 页脚样式 */
+.footer {
+  background-color: #333;
+  color: white;
+  text-align: center;
+  padding: 10px 0;
+  margin-top: 20px;
+}
+
+/* 按钮样式 */
+.button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background-color: #0056b3;
+}
+
+/* 首页特定样式 */
+.home-banner {
+  background-color: #ddd;
+  padding: 50px;
+  text-align: center;
+}
+
+.home-banner h1 {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+.home-banner p {
+  font-size: 18px;
+  margin-bottom: 30px;
+}
+
+/* 关于我们页面特定样式 */
+.about-section {
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.about-section h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.about-section p {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+/* 产品页面特定样式 */
+.product-item {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.product-item img {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.product-item h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.product-item p {
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* 服务页面特定样式 */
+.service-item {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.service-item h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.service-item p {
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* 联系我们页面特定样式 */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.contact-form input,
+.contact-form textarea {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.contact-form button {
+  align-self: flex-start;
+}
+body {
+  overflow: hidden;
+}
