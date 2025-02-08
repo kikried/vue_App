@@ -17,8 +17,8 @@
         </el-menu>
       <el-main>
   <el-carousel type="card" cardScale="0.83" loop=true pause-on-hover=true>
-      <el-carousel-item v-for="item in 3" :key="item">
-        <img :src="imgGet" justify="center"/>
+      <el-carousel-item  v-for="(image, index) in images" :key="index">
+        <img :src="image" alt="动态图片" style="width: 100%; height: 100%;"/>
     </el-carousel-item>
   </el-carousel>
         <div class="banner">
@@ -86,10 +86,12 @@
   function loginClick () {
     router.push('/login');
   }
-const imgGet = ref([
-
-])
-
+  const images = ref([
+  // 这里假设使用 Vite 构建工具，使用 new URL 引入本地静态图片
+  new URL('@/assets/1.jpg', import.meta.url).href,
+  new URL('@/assets/2.jpg', import.meta.url).href,
+  new URL('@/assets/3.jpg', import.meta.url).href
+]);
   const router = useRouter();
   </script>
   
