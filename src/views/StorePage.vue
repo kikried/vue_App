@@ -1,13 +1,35 @@
 <template>
-
+        <div class="service-page">
+      <el-header height="60px">
+        <div class="logo">
+          <span>公司名称</span>
+        </div>
+        <div class="login">
+          <el-button @click="loginClick">登录</el-button>
+        </div>
+      </el-header>   
+      <el-menu :default-active="activeIndex" class="nav-container"  mode="horizontal" @select="handleSelect">
+          <el-menu-item index="/">首页</el-menu-item>
+          <el-menu-item index="/about">关于我们</el-menu-item>
+          <el-menu-item index="/products">产品</el-menu-item>
+          <el-menu-item index="/store">产品购买</el-menu-item>
+          <el-menu-item index="/contact">联系我们</el-menu-item>
+      </el-menu>
+    </div>
 </template>
 
 <script setup>
 import {ref} from 'vue'
-import HeaderMenu from '@/components/HeaderMenu.vue';
 
-import { useRouter } from 'vue-router';
-const router = useRouter();
+const activeIndex = ref(window.location.pathname);
+
+const handleSelect = (index) => {
+    activeIndex.value = index;
+    router.push(index);
+  };
+
+  import { useRouter } from 'vue-router';
+  const router = useRouter();
 </script>
 
 <style scoped>

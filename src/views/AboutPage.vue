@@ -1,6 +1,20 @@
 <template>
-  <div>
-    <HeaderMenu />
+  <div class="about-page">
+      <el-header height="60px">
+          <div class="logo">
+              <span>公司名称</span>
+          </div>
+          <div class="login">
+              <el-button @click="loginClick">登录</el-button>
+          </div>
+      </el-header>
+      <el-menu :default-active="activeIndex" class="nav-container" mode="horizontal" @select="handleSelect">
+          <el-menu-item index="/">首页</el-menu-item>
+          <el-menu-item index="/about">关于我们</el-menu-item>
+          <el-menu-item index="/products">产品</el-menu-item>
+          <el-menu-item index="/store">产品购买</el-menu-item>
+          <el-menu-item index="/contact">联系我们</el-menu-item>
+      </el-menu>
       <el-main>
           <div class="news-layout">
               <!-- 公司的基本简介 -->
@@ -26,14 +40,17 @@
               </div>
           </div>
       </el-main>
-      <Footer/>
+      <el-footer height="60px">
+          <div class="footer-content">
+              <span>版权所有 © 2025 公司名称预留位置</span>
+          </div>
+      </el-footer>
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue';
-import HeaderMenu from '@/components/HeaderMenu.vue';
-import Footer from '@/components/Footer.vue';
+import { ElHeader, ElMain, ElFooter, ElMenu, ElMenuItem } from 'element-plus';
 
 const activeIndex = ref(window.location.pathname);
 
@@ -48,6 +65,10 @@ const router = useRouter();
 
 <style scoped>
 
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+}
 .news-layout {
   display: flex;
   flex-direction: column;
@@ -83,5 +104,13 @@ const router = useRouter();
   background-color: #409EFF;
   color: white;
 }
-
+.nav-container {
+  @apply flex justify-center items-center bg-neutral-50 text-white h-16;
+}
+.el-menu-item {
+  @apply mx-4 cursor-pointer;
+}
+.el-menu-item:hover {
+  @apply text-blue-200;
+}
 </style>
