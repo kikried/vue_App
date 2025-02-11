@@ -1,27 +1,5 @@
 <template >
-    <div class="home-page">
-      <el-header height="60px">
-        <div class="logo">
-          <span>公司名称</span>
-        </div>
-        <div class="login">
-          <el-button @click="loginClick">登录</el-button>
-    </div>
-      </el-header>
-      <div>
-
-    <el-menu :default-active="activeIndex" class="nav-container" mode="horizontal" @select="handleSelect">
-      使用 v-for 指令动态渲染菜单项
-      <el-menu-item 
-        v-for="item in menuItems" 
-        :key="item.index01" 
-        :index="item.index01"
->
-        {{ item.title }}
-      </el-menu-item>
-    </el-menu>
-
-  </div>
+  <HeaderMenu/>
       <el-main>
   <el-carousel type="card" cardScale="0.83" loop=true pause-on-hover=true>
       <el-carousel-item  v-for="(image, index) in images" :key="index">
@@ -70,18 +48,15 @@
           </div>
         </div>
       </el-main>
-      <el-footer height="60px">
-        <div class="footer-content">
-          <span>版权所有 © 2025 公司名称预留位置</span>
-        </div>
-      </el-footer>
-    </div>
+      <Footer/>
   </template>
   
   
   <script setup>
   import { ref,onMounted} from 'vue';
-   
+  import HeaderMenu from '@/components/HeaderMenu.vue';
+  import Footer from '@/components/Footer.vue';
+
   import { useRouter } from 'vue-router';
 // 定义菜单项数组
 const menuItems = ref([
