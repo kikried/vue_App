@@ -46,16 +46,7 @@
   <script setup>
   import { ref } from 'vue';
   import axios from 'axios';
-  import { ElHeader, ElMain, ElFooter, ElMenu, ElMenuItem, ElForm, ElFormItem, ElInput, ElButton } from 'element-plus';
-  
-  
-  const activeIndex = ref(window.location.pathname);
-  
-  
-  const handleSelect = (index) => {
-    activeIndex.value = index;
-    router.push(index);
-  };
+
   
   
   import { useRouter } from 'vue-router';
@@ -68,6 +59,24 @@
     message: ''
   });
   
+  // 定义菜单项数组
+const menuItems = ref([
+  { index01: '/', title: '首页' },
+  { index01: '/about', title: '关于我们' },
+  { index01: '/products', title: '产品' },
+  { index01: '/store', title: '产品购买' },
+  { index01: '/contact', title: '联系我们' }
+]);
+// 定义默认激活的菜单项
+const activeIndex = ref('/');
+// 处理菜单项选择事件
+const handleSelect = (index) => {
+  // 这里可以添加路由跳转逻辑
+  console.log(`选中的菜单项索引是: ${index}`);
+  activeIndex.value = index;
+  router.push(index)
+};
+
   /**
   const submitForm = () => {
     axios.post('/api/contact', form.value)

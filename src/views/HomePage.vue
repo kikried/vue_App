@@ -6,15 +6,22 @@
         </div>
         <div class="login">
           <el-button @click="loginClick">登录</el-button>
-        </div>
+    </div>
       </el-header>
-      <el-menu :default-active="activeIndex" class="nav-container" mode="horizontal" @select="handleSelect">
-          <el-menu-item index="/">首页</el-menu-item>
-          <el-menu-item index="/about">关于我们</el-menu-item>
-          <el-menu-item index="/products">产品</el-menu-item>
-          <el-menu-item index="/store">产品购买</el-menu-item>
-          <el-menu-item index="/contact">联系我们</el-menu-item>
-        </el-menu>
+      <div>
+
+    <el-menu :default-active="activeIndex" class="nav-container" mode="horizontal" @select="handleSelect">
+      使用 v-for 指令动态渲染菜单项
+      <el-menu-item 
+        v-for="item in menuItems" 
+        :key="item.index01" 
+        :index="item.index01"
+>
+        {{ item.title }}
+      </el-menu-item>
+    </el-menu>
+
+  </div>
       <el-main>
   <el-carousel type="card" cardScale="0.83" loop=true pause-on-hover=true>
       <el-carousel-item  v-for="(image, index) in images" :key="index">
@@ -76,17 +83,28 @@
   import { ref,onMounted} from 'vue';
    
   import { useRouter } from 'vue-router';
-  const activeIndex = ref(window.location.pathname);
-  
-  const handleSelect = (index) => {
-    activeIndex.value = index;
-    router.push(index);
-  };
+// 定义菜单项数组
+const menuItems = ref([
+  { index01: '/', title: '首页' },
+  { index01: '/about', title: '关于我们' },
+  { index01: '/products', title: '产品' },
+  { index01: '/store', title: '产品购买' },
+  { index01: '/contact', title: '联系我们' }
+]);
+// 定义默认激活的菜单项
+const activeIndex = ref('/');
+// 处理菜单项选择事件
+const handleSelect = (index) => {
+  // 这里可以添加路由跳转逻辑
+  console.log(`选中的菜单项索引是: ${index}`);
+  activeIndex.value = index;
+  router.push(index)
+};  
 
-  function loginClick () {
+function loginClick () {
     router.push('/login');
   }
-  const images = ref([
+const images = ref([
   // 这里假设使用 Vite 构建工具，使用 new URL 引入本地静态图片
   new URL('@/assets/1.jpg', import.meta.url).href,
   new URL('@/assets/2.jpg', import.meta.url).href,
@@ -98,7 +116,6 @@
   
   <style scoped>
   .home-page {
-    overflow: hidden;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -200,5 +217,13 @@
   font-size: 24px;
   font-weight: bold;
 }
+  /* 隐藏滚动条 */
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none; /* 隐藏 WebKit 内核浏览器的滚动条 */
+  }
+ .hide-scrollbar {
+    -ms-overflow-style: none;  /* 隐藏 IE 和 Edge 的滚动条 */
+    scrollbar-width: none;  /* 隐藏 Firefox 的滚动条 */
+  }
 
   </style>

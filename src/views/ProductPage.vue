@@ -17,24 +17,31 @@
           <el-menu-item index="/contact">联系我们</el-menu-item>
         </el-menu>
       <el-main>
-        <div class="product-content">
-          <h1>我们的产品</h1>
-          <div class="product-item">
-            <!-- <img src="product1.jpg" alt="Product 1"> -->
-            <h3>产品 1</h3>
-            <p>产品 1 的详细信息，包括功能、优势等。</p>
-          </div>
-          <div class="product-item">
-            <!-- <img src="product2.jpg" alt="Product 2"> -->
-            <h3>产品 2</h3>
-            <p>产品 2 的详细信息，包括功能、优势等。</p>
-          </div>
-          <div class="product-item">
-            <!-- <img src="product3.jpg" alt="Product 3"> -->
-            <h3>产品 3</h3>
-            <p>产品 3 的详细信息，包括功能、优势等。</p>
+         
+              <!-- 轮播图 -->
+      <el-carousel type="card" height="300px" class="carousel">
+        <el-carousel-item v-for="(image, index) in carouselImages" :key="index">
+          <img :src="image" alt="轮播图" class="carousel-image">
+        </el-carousel-item>
+      </el-carousel>
+  
+      <!-- 商品列表 -->
+      <div class="product-list">
+        <h2 class="product-list-title">热门商品</h2>
+        <div class="product-grid">
+          <div v-for="(product, index) in products" :key="index">
+            <el-card class="product-card">
+              <template #header>
+                <div class="product-title">{{ product.name }}</div>
+              </template>
+              <img :src="product.image" alt="商品图片" class="product-image">
+              <div class="product-price">价格: {{ product.price }} 元</div>
+              <el-button type="primary" @click="addToCart(product)" class="add-to-cart-button">加入购物车</el-button>
+            </el-card>
           </div>
         </div>
+      </div>
+        
       </el-main>
       <el-footer height="60px">
         <div class="footer-content">
@@ -49,16 +56,61 @@
 //   import { ref } from 'vue';
   import { ElHeader, ElMain, ElFooter, ElMenu, ElMenuItem } from 'element-plus';
   
+  // 定义菜单项数组
+const menuItems = ref([
+  { index01: '/', title: '首页' },
+  { index01: '/about', title: '关于我们' },
+  { index01: '/products', title: '产品' },
+  { index01: '/store', title: '产品购买' },
+  { index01: '/contact', title: '联系我们' }
+]);
+// 定义默认激活的菜单项
+const activeIndex = ref('/');
+// 处理菜单项选择事件
+const handleSelect = (index) => {
+  // 这里可以添加路由跳转逻辑
+  console.log(`选中的菜单项索引是: ${index}`);
+  activeIndex.value = index;
+  router.push(index)
+};
+  // 轮播图数据
+  const carouselImages = ref([
+  new URL('@/assets/c.png', import.meta.url).href,
+  new URL('@/assets/c1.png', import.meta.url).href,
+  new URL('@/assets/c2.png', import.meta.url).href,
+  new URL('@/assets/c3.png', import.meta.url).href
+
+  ]);
   
-  const activeIndex = ref(window.location.pathname);
-  
-  
-  const handleSelect = (index) => {
-    activeIndex.value = index;
-    router.push(index);
-  };
-  
-  
+  // 商品数据
+  const products = ref([
+    {
+      id: 1,
+      name: '商品 1',
+      image:  new URL('@/assets/c.png', import.meta.url).href,
+      price: 99
+    },
+    {
+      id: 2,
+      name: '商品 2',
+      image: new URL('@/assets/c1.png', import.meta.url).href,
+      price: 199
+    },
+    {
+      id: 3,
+      name: '商品 3',
+      image: new URL('@/assets/c2.png', import.meta.url).href,
+      price: 299
+    },
+    {
+      id: 4,
+      name: '商品 4',
+      image:  new URL('@/assets/c3.png', import.meta.url).href,
+      price: 399
+    }
+  ]);
+    
+
   import { useRouter } from 'vue-router';
   const router = useRouter();
   </script>
@@ -131,4 +183,77 @@
 .el-menu-item:hover {
   @apply text-blue-200;
 }
+
+.mall-home {
+    padding: 2rem;
+  }
+  
+  .nav-menu {
+    background-color: #3b82f6; /* 对应 bg-blue-500 */
+    color: white;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .nav-menu-item {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  .nav-menu-item:hover {
+    background-color: #2563eb; /* 对应 hover:bg-blue-600 */
+  }
+  
+  .carousel {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+  
+  .carousel-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .product-list-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+  
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.25rem;
+  }
+  
+  .product-card {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* 对应 shadow-md */
+    transition: box-shadow 300ms ease;
+  }
+  
+  .product-card:hover {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* 对应 hover:shadow-lg */
+  }
+  
+  .product-title {
+    font-size: 1.125rem;
+    font-weight: bold;
+  }
+  
+  .product-image {
+    width: 100%;
+  }
+  
+  .product-price {
+    color: #ef4444; /* 对应 text-red-500 */
+    font-size: 1rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .add-to-cart-button {
+    width: 100%;
+  }
   </style>
