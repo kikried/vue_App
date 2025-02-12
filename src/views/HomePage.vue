@@ -11,7 +11,7 @@
       <div>
 
     <el-menu :default-active="activeIndex" class="nav-container" mode="horizontal" @select="handleSelect">
-      使用 v-for 指令动态渲染菜单项
+      <!-- 使用 v-for 指令动态渲染菜单项 -->
       <el-menu-item 
         v-for="item in menuItems" 
         :key="item.index01" 
@@ -204,7 +204,7 @@ const images = ref([
     background-color: #409EFF;
     color: white;
   }
-.nav-container {
+  .nav-container {
   @apply flex justify-center items-center bg-neutral-50 text-white h-16;
 }
 .el-menu-item {
@@ -217,13 +217,5 @@ const images = ref([
   font-size: 24px;
   font-weight: bold;
 }
-  /* 隐藏滚动条 */
-  .hide-scrollbar::-webkit-scrollbar {
-    display: none; /* 隐藏 WebKit 内核浏览器的滚动条 */
-  }
- .hide-scrollbar {
-    -ms-overflow-style: none;  /* 隐藏 IE 和 Edge 的滚动条 */
-    scrollbar-width: none;  /* 隐藏 Firefox 的滚动条 */
-  }
 
   </style>

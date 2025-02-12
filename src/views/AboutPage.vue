@@ -64,7 +64,19 @@ const router = useRouter();
 </script>
 
 <style scoped>
-
+.about-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+.el-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  background-color: #409EFF;
+  color: white;
+}
 .logo {
   font-size: 24px;
   font-weight: bold;
